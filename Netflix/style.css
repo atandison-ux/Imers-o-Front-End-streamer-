@@ -1,0 +1,196 @@
+/* RESET */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* VARIÁVEIS DE TEMA */
+:root {
+  --bg-primary: #141414;
+  --bg-secondary: #1f1f1f;
+  --text-primary: #fff;
+  --text-secondary: #b3b3b3;
+  --border-color: #333;
+  --button-hover: rgba(255, 255, 255, 0.1);
+}
+
+html.light-mode {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #222;
+  --text-secondary: #555;
+  --border-color: #ddd;
+  --button-hover: rgba(0, 0, 0, 0.08);
+}
+
+/* BASE */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  animation: fadeIn 0.6s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+}
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+}
+
+/* PERFIS */
+.profiles {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem;
+  list-style: none; /* Remove marcadores padrão da ul */
+}
+
+.profile {
+  flex: 0 0 auto;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  list-style: none; /* Remove marcadores padrão do li */
+}
+
+/* LISTA ORDENADA DENTRO DE CADA PERFIL */
+.profile ol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none; /* Remove numeração padrão da ol */
+}
+
+/* ITENS DA LISTA ORDENADA */
+.profile ol li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* HOVER + FOCO */
+.profile:hover,
+.profile:focus {
+  transform: scale(1.1);
+  outline: none;
+}
+
+/* IMAGEM */
+.profile img {
+  width: clamp(80px, 12vw, 160px);
+  height: clamp(80px, 12vw, 160px);
+  border-radius: 6px;
+  object-fit: cover;
+
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* BOTÃO DE TOGGLE DE TEMA */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover {
+  background: var(--button-hover);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.profile:hover img,
+.profile:focus img {
+  border-color: #fff;
+}
+
+/* NOME */
+.profile p {
+  margin-top: 0.5rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: #808080;
+  transition: 0.3s;
+}
+
+.profile:hover p,
+.profile:focus p {
+  color: #fff;
+}
+
+/* PERFIL SELECIONADO */
+.profile.selected {
+  transform: scale(1.15);
+}
+
+.profile.selected img {
+  border-color: #e50914;
+}
+
+.profile.selected p {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* CLICK ANIMATION */
+.profile:active {
+  transform: scale(0.95);
+}
+
+/* TABLET+ */
+@media (min-width: 768px) {
+  .profiles {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+  }
+}
