@@ -46,7 +46,7 @@ Netflix/
 ---
 
 📸 Demonstração
-(Adicione aqui prints ou GIFs mostrando o projeto em funcionamento) https://github.com/atandison-ux/Imers-o-Front-End-streamer-
+(Adicione aqui prints ou GIFs mostrando o projeto em funcionamento) 
 
 ---
 
